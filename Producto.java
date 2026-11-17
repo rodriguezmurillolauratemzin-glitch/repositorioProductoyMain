@@ -1,13 +1,14 @@
-class Producto{
+
+class Producto {
 
     private String nombre;
     private double precio;
     private int stock;
 
     public Producto(String nombre, double precio, int stock) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.stock = stock;
+        setNombre(nombre);
+        setPrecio(precio);
+        setStock(stock);
     }
 
     public String getNombre() {
@@ -23,29 +24,43 @@ class Producto{
     }
 
     public void setNombre(String nombre) {
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException(
+                "El nombre no puede ser nulo ni estar en blanco"
+            );
+        }
         this.nombre = nombre;
     }
 
     public void setPrecio(double precio) {
+        if (precio < 0) {
+            throw new IllegalArgumentException(
+                "El precio no puede ser negativo"
+            );
+        }
         this.precio = precio;
     }
 
     public void setStock(int stock) {
+        if (stock < 0) {
+            throw new IllegalArgumentException(
+                "El stock no puede ser negativo"
+            );
+        }
         this.stock = stock;
     }
 
-     public void aplicarDescuento(double porcentaje) {
+    public void aplicarDescuento(double porcentaje) {
         precio = precio - (precio * porcentaje / 100);
     }
 
     public boolean esMasCaroQue(Producto otro) {
         return this.precio > otro.precio;
     }
-    
+
     public double calcularPrecioTotal(int unidades) {
         return precio * unidades;
     }
-
 
     @Override
     public String toString() {
