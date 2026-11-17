@@ -62,18 +62,34 @@ class Producto {
         return precio * unidades;
     }
 
-    @Override
-    public String toString() {
-        return "Nombre: " + nombre +
-               ", Precio: " + precio + " €" +
-               ", Stock: " + stock;
-    }
-
     public double calculaValorTotal() {
         return precio * stock;
     }
 
     public boolean hayStock() {
         return stock > 0;
+    }
+
+    public void reducirStock(int unidades) {
+        if (unidades <= 0) {
+            throw new IllegalArgumentException(
+                "Las unidades deben ser mayores que cero."
+            );
+        }
+
+        if (unidades > stock) {
+            throw new IllegalArgumentException(
+                "No hay suficiente stock disponible."
+            );
+        }
+
+        setStock(stock - unidades);
+    }
+
+    @Override
+    public String toString() {
+        return "Nombre: " + nombre +
+               ", Precio: " + precio + " €" +
+               ", Stock: " + stock;
     }
 }

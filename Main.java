@@ -76,5 +76,10 @@ public class Main {
             System.out.println("Los dos productos tienen el mismo precio.");
         }
 
+    //Comprobación Tarea 2 Parte 4
+        Producto producto1 = new Producto("Portátil", 800, 20);
+        System.out.println("Stock inicial: " + producto1.getStock());
+        producto1.reducirStock(5);
+        System.out.println("Stock después de reducir: " + producto1.getStock());
     }
 }
